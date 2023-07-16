@@ -1,30 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import './TopicList.scss';
+//Components
+import TopicListItem from './TopicListItem';
+import FavBadge from './FavBadge';
 
-const TopicList = () => {
-  <div className="top-nav-bar__topic-list">
-    {/* Insert React */}
-  </div>
-}
+//Styles
+import '../styles/TopicList.scss';
+
+const TopicList = (props) => {
+  const [selectedTopic, setSelectedTopic] = useState(props.topics[0].id);
+
+  function onTopicSelect(topicId) {
+    setSelectedTopic(topicId);
+  }
+
+  const topics = props.topics.map((topic) => {
+    const isSelect = topic.id === selectedTopic;
+    
+    return <TopicListItem key={topic.id} label={topic.title} isSelect={isSelect} id={topic.id} onSelect={onTopicSelect} />;
+  });
+
+  return (
+    <ul className="top-nav-bar__topic-list">
+      {topics}
+      <FavBadge isFavPhotoExist={Object.keys(props.favPhotos).length === 0 ? false : true} />
+    </ul>
+  );
+};
 
 TopicList.defaultProps = {
   topics: [
     {
-      "id": "1",
-      "slug": "topic-1",
-      "title": "Nature"
-    },  
-    {
-      "id": "2",
-      "slug": "topic-2",
-      "title": "Travel"
+      id: '1',
+      slug: 'topic-1',
+      title: 'Nature',
     },
     {
-      "id": "3",
-      "slug": "topic-3",
-      "title": "People"
+      id: '2',
+      slug: 'topic-2',
+      title: 'Travel',
     },
-  ]
-}
-export default TopicList
+    {
+      id: '3',
+      slug: 'topic-3',
+      title: 'People',
+    },
+  ],
+};
+export default TopicList;

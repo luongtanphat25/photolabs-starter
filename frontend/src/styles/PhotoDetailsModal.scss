@@ -25,12 +25,11 @@
 }
 
 .photo-details-modal__images {
-  margin-left: 36px;
-  margin-top: 8px;
+  margin: 8px 36px;
 }
 
 .photo-details-modal__image {
-  max-width: 95%;
+  max-width: 100%;
   border-radius: 8px;
 }
 
@@ -49,10 +48,12 @@
 }
 
 .photo-details-modal__header {
+  padding-top: 16px;
+  border-top: 1.5px solid #E6E6E6;
   font-size: 18px;
   font-weight: 500;
   color: #1e1e1e;
   margin-top: 24px;
   margin-bottom: 24px;
-  width: 90%;
+  width: 100%;
 }

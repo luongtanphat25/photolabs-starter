@@ -1,16 +1,29 @@
 import React from 'react';
 
-import '../styles/TopicListItem'
+import '../styles/TopicListItem.scss';
 
-const TopicListItem = () => {
-  <div className="topic-list__item">
-    {/* Insert React */}
-  </div>
-}
+const TopicListItem = (props) => {
+  const [isSelect, setIsSelect] = React.useState(props.isSelect);
+  const onClick = () => {
+    setIsSelect(true);
+    props.onSelect(props.id);
+  };
 
-TopicListItem.defaultProps =   {
-  "id": "1",
-  "slug": "topic-1",
-  "label": "Nature"
-}
-export default TopicListItem
+  if (isSelect !== props.isSelect) {
+    setIsSelect(props.isSelect);
+  }
+
+  const style = { textDecoration: isSelect ?  'overline' : 'none'};
+  return (
+    <div onClick={onClick} style={style} className="topic-list__item">
+      <span>{props.label}</span>
+    </div>
+  );
+};
+
+TopicListItem.defaultProps = {
+  id: '1',
+  slug: 'topic-1',
+  label: 'Nature',
+};
+export default TopicListItem;

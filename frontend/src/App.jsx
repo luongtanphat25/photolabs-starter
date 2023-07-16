@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import PhotoListItem from './components/PhotoListItem';
+//Components
+import HomeRoute from './routes/HomeRoute';
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
+
+//Hooks
+import useApplicationData from './hooks/useApplicationData';
+
+//Styles
 import './App.scss';
 
-// Note: Rendering a single component to build components in isolation
-const App = () => (
-  <div className="App">
-    <PhotoListItem/>
-  </div>
-)
+//Mocks
+import photos from './mocks/photos';
+import topics from './mocks/topics';
 
-export default App
+//App component
+const App = () => {
+  const { onPhotoSelect, favPhotos, onPhotoClick, onClosePhotoDetailsModal, handleFavPhoto } = useApplicationData();
+
+  return (
+    <div className="App">
+      <HomeRoute topics={topics} photos={photos} favPhotos={favPhotos} onFavPhoto={handleFavPhoto} onPhotoClick={onPhotoClick} />
+
+      {onPhotoSelect && <PhotoDetailsModal photo={onPhotoSelect} favPhotos={favPhotos} onFavPhoto={handleFavPhoto} onPhotoClick={onPhotoClick} onCloseModal={onClosePhotoDetailsModal} />}
+    </div>
+  );
+};
+
+export default App;
