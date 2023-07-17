@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 
-export const ACTIONS = {
+const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
@@ -9,6 +9,8 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
 };
+
+const API_URL = 'http://localhost:8001/api';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -21,7 +23,8 @@ const reducer = (state, action) => {
         },
       };
     case ACTIONS.FAV_PHOTO_REMOVED:
-      const { [action.payload.id]: _, ...remainingFavPhotos } = state.favPhotos;
+      const { [action.payload.id]: _, ...remainingFavPhotos } =
+        state.favPhotos;
       return {
         ...state,
         favPhotos: remainingFavPhotos,
@@ -47,7 +50,9 @@ const reducer = (state, action) => {
         displayPhotoDetails: action.payload,
       };
     default:
-      throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      );
   }
 };
 
@@ -72,7 +77,9 @@ const useApplicationData = () => {
 
   const handleFavPhoto = (photo) => {
     dispatch({
-      type: state.favPhotos[photo.id] ? ACTIONS.FAV_PHOTO_REMOVED : ACTIONS.FAV_PHOTO_ADDED,
+      type: state.favPhotos[photo.id]
+        ? ACTIONS.FAV_PHOTO_REMOVED
+        : ACTIONS.FAV_PHOTO_ADDED,
       payload: photo,
     });
   };
@@ -81,19 +88,19 @@ const useApplicationData = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8001/api/photos').then((res) => {
+    axios.get(`${API_URL}/photos`).then((res) => {
       setPhotos(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8001/api/topics').then((res) => {
+    axios.get(`${API_URL}/topics`).then((res) => {
       setTopics(res.data);
     });
   }, []);
 
   const onTopicSelect = (id) => {
-    axios.get(`http://localhost:8001/api/topics/photos/${id}`).then((res) => {
+    axios.get(`${API_URL}/topics/photos/${id}`).then((res) => {
       setPhotos(res.data);
     });
   };

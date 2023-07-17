@@ -13,10 +13,19 @@ const PhotoListItem = (props) => {
     <div className="photo-list__item">
       <PhotoFavButton isFav={isFav} onClick={() => onFavClick(photo)} />
 
-      <img className="photo-list__image" src={photo.urls.regular} alt="Photo" onClick={() => props.onPhotoClick(photo)} />
+      <img
+        className="photo-list__image"
+        src={photo.urls.regular}
+        alt="Photo"
+        onClick={() => props.onPhotoClick(photo)}
+      />
 
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={photo.user.profile} alt="Profile" />
+        <img
+          className="photo-list__user-profile"
+          src={photo.user.profile}
+          alt="Profile"
+        />
 
         <div className="photo-list__user-info">
           {photo.user.name}

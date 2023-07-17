@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 //Components
 import TopNavigation from '../components/TopNavigationBar';
@@ -8,12 +8,28 @@ import PhotoList from '../components/PhotoList';
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
-  const { selectedTopic, topics, photos, onFavPhoto, onPhotoClick, favPhotos } = props;
-  
+  const {
+    topics,
+    photos,
+    onTopicSelect,
+    onFavPhoto,
+    onPhotoClick,
+    favPhotos,
+  } = props;
+
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favPhotos={favPhotos} onTopicSelect={props.onTopicSelect} />
-      <PhotoList photos={photos} favPhotos={favPhotos} onFavPhoto={onFavPhoto} onPhotoClick={onPhotoClick} />
+      <TopNavigation
+        topics={topics}
+        favPhotos={favPhotos}
+        onTopicSelect={onTopicSelect}
+      />
+      <PhotoList
+        photos={photos}
+        favPhotos={favPhotos}
+        onFavPhoto={onFavPhoto}
+        onPhotoClick={onPhotoClick}
+      />
     </div>
   );
 };

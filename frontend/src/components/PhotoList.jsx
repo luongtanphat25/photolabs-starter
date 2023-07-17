@@ -12,7 +12,15 @@ const PhotoList = (props) => {
   const photoList = photos.map((photo) => {
     const isFav = Boolean(favPhotos[photo.id]);
 
-    return <PhotoListItem key={photo.id} photo={photo} isFav={isFav} onFavClick={onFavPhoto} onPhotoClick={onPhotoClick} />;
+    return (
+      <PhotoListItem
+        key={photo.id}
+        photo={photo}
+        isFav={isFav}
+        onFavClick={onFavPhoto}
+        onPhotoClick={onPhotoClick}
+      />
+    );
   });
   return <ul className="photo-list">{photoList}</ul>;
 };

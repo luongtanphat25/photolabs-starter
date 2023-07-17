@@ -15,18 +15,28 @@ const TopicList = (props) => {
     props.onTopicSelect(topicId);
   };
 
- 
-
   const topics = props.topics.map((topic) => {
     const isSelect = topic.id === selectedTopic;
 
-    return <TopicListItem key={topic.id} label={topic.title} isSelect={isSelect} id={topic.id} onTopicSelect={onTopicSelect}/>;
+    return (
+      <TopicListItem
+        key={topic.id}
+        label={topic.title}
+        isSelect={isSelect}
+        id={topic.id}
+        onTopicSelect={onTopicSelect}
+      />
+    );
   });
 
   return (
     <ul className="top-nav-bar__topic-list">
       {topics}
-      <FavBadge isFavPhotoExist={Object.keys(props.favPhotos).length === 0 ? false : true} />
+      <FavBadge
+        isFavPhotoExist={
+          Object.keys(props.favPhotos).length === 0 ? false : true
+        }
+      />
     </ul>
   );
 };

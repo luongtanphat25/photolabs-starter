@@ -7,10 +7,15 @@ import TopicList from './TopicList';
 import '../styles/TopNavigationBar.scss';
 
 const TopNavigation = (props) => {
+  const { topics, favPhotos, onTopicSelect } = props;
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
-      <TopicList topics={props.topics} favPhotos={props.favPhotos} onTopicSelect={props.onTopicSelect} />
+      <TopicList
+        topics={topics}
+        favPhotos={favPhotos}
+        onTopicSelect={onTopicSelect}
+      />
     </div>
   );
 };
