@@ -2,6 +2,13 @@
 The PhotoLabs project for the Web Development React course programming.
 
 # Photolabs
+- View photos on different topics.
+- User can mark their favorite photo anywhere in the app.
+- Navigation bar can track if user liked the photos in the heart icon on the right.
+- User can view the large photo and the similar photos.
+
+# Screenshots
+
 
 ## Setup
 
