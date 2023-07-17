@@ -8,16 +8,19 @@ import FavBadge from './FavBadge';
 import '../styles/TopicList.scss';
 
 const TopicList = (props) => {
-  const [selectedTopic, setSelectedTopic] = useState(props.topics[0].id);
+  const [selectedTopic, setSelectedTopic] = useState(null);
 
-  function onTopicSelect(topicId) {
+  const onTopicSelect = (topicId) => {
     setSelectedTopic(topicId);
-  }
+    props.onTopicSelect(topicId);
+  };
+
+ 
 
   const topics = props.topics.map((topic) => {
     const isSelect = topic.id === selectedTopic;
-    
-    return <TopicListItem key={topic.id} label={topic.title} isSelect={isSelect} id={topic.id} onSelect={onTopicSelect} />;
+
+    return <TopicListItem key={topic.id} label={topic.title} isSelect={isSelect} id={topic.id} onTopicSelect={onTopicSelect}/>;
   });
 
   return (

@@ -2,14 +2,15 @@ import React from 'react';
 
 //Components
 import PhotoList from '../components/PhotoList';
+import PhotoFavButton from '../components/PhotoFavButton';
 
 //Styles
 import '../styles/PhotoDetailsModal.scss';
 
 const PhotoDetailsModal = (props) => {
-  const { photo } = props;
+  const { photo, favPhotos, onFavPhoto, onPhotoClick } = props;
   const similar_photos = photo.similarPhotos;
-
+  const isFav = Boolean(favPhotos[photo.id]); 
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={props.onCloseModal}>
@@ -27,6 +28,7 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className="photo-details-modal__images">
+        <PhotoFavButton isFav={isFav} onClick={() => onFavPhoto(photo)} />
         <img className="photo-details-modal__image" src={photo.urls.full} alt="Photo" />
 
         <div className="photo-list__user-details">
@@ -42,7 +44,7 @@ const PhotoDetailsModal = (props) => {
 
         <div className="photo-details-modal__header">Related Photos</div>
 
-        <PhotoList photos={similar_photos} favPhotos={props.favPhotos} onFavPhoto={props.onFavPhoto} onPhotoClick={props.onPhotoClick} />
+        <PhotoList photos={similar_photos} favPhotos={favPhotos} onFavPhoto={onFavPhoto} onPhotoClick={onPhotoClick} />
       </div>
     </div>
   );

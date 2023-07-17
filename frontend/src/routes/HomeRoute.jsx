@@ -8,16 +8,12 @@ import PhotoList from '../components/PhotoList';
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
-  const { topics, photos, onFavPhoto, onPhotoClick, favPhotos } = props;
+  const { selectedTopic, topics, photos, onFavPhoto, onPhotoClick, favPhotos } = props;
+  
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favPhotos={favPhotos} />
-      <PhotoList 
-        photos={photos} 
-        favPhotos={favPhotos} 
-        onFavPhoto={onFavPhoto} 
-        onPhotoClick={onPhotoClick} 
-      />
+      <TopNavigation topics={topics} favPhotos={favPhotos} onTopicSelect={props.onTopicSelect} />
+      <PhotoList photos={photos} favPhotos={favPhotos} onFavPhoto={onFavPhoto} onPhotoClick={onPhotoClick} />
     </div>
   );
 };

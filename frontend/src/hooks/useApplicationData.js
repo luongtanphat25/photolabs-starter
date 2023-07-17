@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
+import axios from 'axios';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -76,12 +77,36 @@ const useApplicationData = () => {
     });
   };
 
+  const [photos, setPhotos] = useState([]);
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8001/api/photos').then((res) => {
+      setPhotos(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8001/api/topics').then((res) => {
+      setTopics(res.data);
+    });
+  }, []);
+
+  const onTopicSelect = (id) => {
+    axios.get(`http://localhost:8001/api/topics/photos/${id}`).then((res) => {
+      setPhotos(res.data);
+    });
+  };
+
   return {
     onPhotoSelect: state.onPhotoSelect,
     favPhotos: state.favPhotos,
     onPhotoClick,
     onClosePhotoDetailsModal,
     handleFavPhoto,
+    photos,
+    topics,
+    onTopicSelect,
   };
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 //Components
 import HomeRoute from './routes/HomeRoute';
@@ -10,17 +10,14 @@ import useApplicationData from './hooks/useApplicationData';
 //Styles
 import './App.scss';
 
-//Mocks
-import photos from './mocks/photos';
-import topics from './mocks/topics';
-
 //App component
 const App = () => {
-  const { onPhotoSelect, favPhotos, onPhotoClick, onClosePhotoDetailsModal, handleFavPhoto } = useApplicationData();
+  const { onTopicSelect, photos, topics, onPhotoSelect, favPhotos, onPhotoClick, onClosePhotoDetailsModal, handleFavPhoto } = useApplicationData();
 
+  
   return (
     <div className="App">
-      <HomeRoute topics={topics} photos={photos} favPhotos={favPhotos} onFavPhoto={handleFavPhoto} onPhotoClick={onPhotoClick} />
+      <HomeRoute topics={topics} photos={photos} favPhotos={favPhotos} onFavPhoto={handleFavPhoto} onPhotoClick={onPhotoClick} onTopicSelect={onTopicSelect} />
 
       {onPhotoSelect && <PhotoDetailsModal photo={onPhotoSelect} favPhotos={favPhotos} onFavPhoto={handleFavPhoto} onPhotoClick={onPhotoClick} onCloseModal={onClosePhotoDetailsModal} />}
     </div>
