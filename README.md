@@ -16,6 +16,10 @@ Install dependencies with `npm install` in each respective `/frontend` and `/bac
 
 ## [Frontend] Running Webpack Development Server
 
+!["Photos on People topic"](https://github.com/luongtanphat25/photolabs-starter/blob/main/docs/topic.png)
+!["View on selected photo"](https://github.com/luongtanphat25/photolabs-starter/blob/main/docs/view.png)
+!["Display similar photos"](https://github.com/luongtanphat25/photolabs-starter/blob/main/docs/similar.png)
+
 ```sh
 cd frontend
 npm start
