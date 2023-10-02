@@ -15,6 +15,7 @@ const HomeRoute = (props) => {
     onFavPhoto,
     onPhotoClick,
     favPhotos,
+    branchOnClick,
   } = props;
 
   return (
@@ -23,6 +24,7 @@ const HomeRoute = (props) => {
         topics={topics}
         favPhotos={favPhotos}
         onTopicSelect={onTopicSelect}
+        branchOnClick={branchOnClick}
       />
       <PhotoList
         photos={photos}

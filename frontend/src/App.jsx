@@ -21,6 +21,8 @@ const App = () => {
     onPhotoClick,
     onClosePhotoDetailsModal,
     handleFavPhoto,
+    branchOnClick,
+    showFavPhotos,
   } = useApplicationData();
 
   return (
@@ -32,6 +34,7 @@ const App = () => {
         onFavPhoto={handleFavPhoto}
         onPhotoClick={onPhotoClick}
         onTopicSelect={onTopicSelect}
+        branchOnClick={branchOnClick}
       />
 
       {onPhotoSelect && (

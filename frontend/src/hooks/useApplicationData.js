@@ -105,6 +105,12 @@ const useApplicationData = () => {
     });
   };
 
+  const branchOnClick = () => {
+    axios.get(`${API_URL}/photos`).then((res) => {
+      setPhotos(res.data);
+    });
+  };
+
   return {
     onPhotoSelect: state.onPhotoSelect,
     favPhotos: state.favPhotos,
@@ -114,6 +120,7 @@ const useApplicationData = () => {
     photos,
     topics,
     onTopicSelect,
+    branchOnClick,
   };
 };
 

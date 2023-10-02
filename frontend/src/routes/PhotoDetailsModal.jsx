@@ -49,11 +49,14 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton isFav={isFav} onClick={() => onFavPhoto(photo)} />
-        <img
-          className="photo-details-modal__image"
-          src={photo.urls.full}
-          alt="Photo"
-        />
+        <div id='modal_image'>
+          <img
+            className="photo-details-modal__image"
+            src={photo.urls.full}
+            alt="Photo"
+          />
+        </div>
+        
 
         <div className="photo-list__user-details">
           <img
